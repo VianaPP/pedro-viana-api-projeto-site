@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" id="link_css1">
+    <link rel="stylesheet" href="css/cadastro.css" id="link_css2">
+    <link rel="stylesheet" href="css/loginpagina.css" id="link_css3">
+    <link rel="shortcut icon" href="assets/img-login/hatch.png" type="image/x-icon">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <!-- header -->
+    <div class="cabecalho">
+        <div class="caixa">
+            <h1><span>5</span>Chickens</h1>
+            <nav>
+                <ul class="nav_header">
+                    <li><img id="img_li" src="assets/lua.png" onclick="modo_noturno()"></li>
+                    <li><a href="index.html">Sair</a></li>
+                    <li><a href="cliente.html">Cliente</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!--Fim do Header-->
+    <div class="fadeIn login_decorar">
+        <div class="escurecer">
+            <div class="container">
+                <div class="box-login">
+                    <div class="cadastro">
+                        <div class="ovo">
+                            <img src="assets/img-login/hatch.png">
+                        </div>
+                        <h2>Fazer cadastro</h2>
+
+                        <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+
+                            <input id="inp_nome" name="nome" placeholder="Nome"><br>
+                            <input id="inp_cnpj" name="cnpj" placeholder="CNPJ" onkeyup="cnpjcheck()" maxlength="14"><br>
+                            <input id="inp_email" name="email" placeholder="E-mail" onkeyup="emailcheck()"><br>
+                            <input id="inp_senha" name="senha" type="password" placeholder="Senha" onkeyup="senhacheck()"><br>
+                            <input id="inp_confirmsenha" type="password" placeholder="Confirme sua Senha"
+                            onkeyup="senhaconfirm()"><br> 
+                                
+                            <button type="submit">Criar Conta</button>
+                        </form>
+
+                        <div id="div_checkcnpj">
+                        </div>
+                        <div id="div_checkemail">
+                        </div>
+                        <div id="div_checksenha">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="caixa_footer">
+            <nav>
+                <ul class="bot_list">
+                    <li>Telefone: 9999-9999</li>
+                    <li>Email contato@5chickens.com.br</li>
+                    <li>Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</li>
+                </ul>
+            </nav>
+            <small>&copy; Copyright 2021, 5Chickens</small>
+        </div>
+    </footer>
+</body>
+
+</html>
+<script>
+
+    function cadastrar() {
+
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                window.location.href='login.html';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+                
+            }
+        });
+
+        return false;
+    }
+
+
+    function cnpjcheck() {
+        if (inp_cnpj.value.length == 14) {
+            inp_cnpj.style = `border-color: blue`;
+            div_checkcnpj.innerHTML = ``;
+        } else {
+            inp_cnpj.style = `border-color: red`;
+            div_checkcnpj.innerHTML = `CNPJ inválido`;
+        }
+    }
+
+    function emailcheck() {
+        if (inp_email.value.indexOf('@') >= 1) {
+            inp_email.style = `border-color: blue`;
+            div_checkemail.innerHTML = ``;
+        } else {
+            inp_email.style = `border-color: red`;
+            div_checkemail.innerHTML = `E-mail Inválido`;
+        }
+    }
+
+    function senhacheck() {
+        if (inp_senha.value.length >= 7) {
+            inp_senha.style = `border-color: blue`;
+            div_checksenha.innerHTML = ``;
+        } else {
+            inp_senha.style = `border-color: red`;
+            div_checksenha.innerHTML = `Senha deve conter no mínimo 7 caracteres`;
+        }
+    }
+
+    function senhaconfirm() {
+        if (inp_senha.value == inp_confirmsenha.value && inp_confirmsenha.value.length >= 7) {
+            inp_confirmsenha.style = `border-color: blue`;
+        } else {
+            inp_confirmsenha.style = `border-color: red`;
+        }
+    }
+
+    function cadastro() {
+        if (inp_cnpj.value.length == 14 && inp_email.value.indexOf('@') >= 1 && inp_senha.value.length >= 7 &&
+            inp_senha.value == inp_confirmsenha.value && inp_confirmsenha.value.length >= 7) {
+
+            alert(`Usuário ${inp_nome.value} cadastrado com sucesso`);
+            var confirmacao = confirm("Deseja Cadastrar outros Usuários?");
+
+            if (confirmacao == true) {
+                
+                window.location.href = "cadastro.html"
+
+            } else {
+
+                window.location.href = "cliente.html"
+
+            }
+
+        } else {
+            alert(`Falha no Cadastro`);
+        }
+    }
+
+    var click = 0;
+
+    function modo_noturno() {
+
+        click++;
+
+        link_css1.href = "css/noturno/style2.css";
+        link_css2.href = "css/noturno/cadastro2.css";
+        link_css3.href = "css/noturno/loginpagina2.css";
+
+        img_li.src = "assets/lua2.png"
+
+        if (click == 2) {
+            click = 0;
+            modo_normal()
+        }
+
+    }
+
+
+    function modo_normal() {
+        link_css1.href = "css/style.css";
+        link_css2.href = "css/cadastro.css";
+        link_css3.href = "css/loginpagina.css";
+
+        img_li.src = "assets/lua.png"
+    }
+
+</script>

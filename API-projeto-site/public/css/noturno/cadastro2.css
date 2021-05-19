@@ -1,0 +1,56 @@
+body{
+    height: 100vh;
+}
+.box-login input{
+    height: 30px;
+    width: 80%;
+    font-size: 13px;
+    padding-right: 6px;
+    padding-left: 12px;
+    margin-top: 20px;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid;
+}
+.box-login button{
+    width: 25%;
+    height: 30px;
+    border-radius: 18px;
+    margin: 50px 0;
+    cursor: pointer;
+    border: none;
+    background: -webkit-linear-gradient(left, red, blue);
+    color: white;
+}
+.box-login button:hover{
+    background: -webkit-linear-gradient(right, red, blue);
+}
+
+
+.cadastro{
+    text-align: center;
+    padding: 0 26px;
+    
+    color: white;
+
+}
+.ovo{
+    max-width: 80%;
+    margin: 0 auto;
+    height: 40px;
+    text-align: center;
+    padding-top: 20px;
+}
+.ovo img{
+    height: 40px;
+}
+.container{
+    max-width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    text-align: center;
+}
+.cadastro{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

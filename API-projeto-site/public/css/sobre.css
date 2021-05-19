@@ -1,0 +1,66 @@
+body{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container_pag {
+    background-image: url(../assets/img-login/granja.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 100%;
+}
+
+.caixa_sobre {
+    /* margin-top: 15px; */
+    padding-top: 15px;
+    max-width: 90%;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.container {
+    margin: 0 15px 0 15px;
+    width: 60%;
+    min-height: 500px;
+    float: left;
+    border-radius: 20px;
+    background-color: #FFFF;
+    padding-bottom: 10px;
+    box-shadow: 3px 3px 5px 2px rgb(0, 0, 0);
+}
+
+.container h1{
+    margin-top: 0px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+    background-color: grey;
+   /* width: 400px; */
+}
+
+.container p {
+    margin: 10px 15px 0 15px;
+}
+
+.img_lateral {
+    float: right;
+    /* margin-top: 10px; */
+    width: 35%;
+    height: 300px;
+}
+
+.quadradoPreto {
+    background-color: #020022;
+    border-radius: 15px;
+    width: 370px;
+    height: 300px;
+    /* margin-top: 10px; */
+    margin-bottom: 10px;
+}
+
+.img_lateral img {
+    border-radius: 5px;
+    margin: 10px;
+    height: 280px;
+    width: 350px;
+}

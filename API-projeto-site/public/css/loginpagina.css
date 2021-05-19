@@ -1,0 +1,128 @@
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; } 
+    }
+    @-moz-keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1; }
+    }
+    @-o-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+    }
+    @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+    }
+/* Geral - Corpo */
+.fadeIn {
+    -webkit-animation: fadeIn 1s ease-in-out;
+    -moz-animation: fadeIn 1s ease-in-out;
+    -o-animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 1s ease-in-out;
+    }
+body{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 100vh;
+}
+body, html{
+    height: 100vh;
+}
+
+
+
+.login_box{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.ovo{
+    height: 40px;
+}
+.img1, .img2, .img3{
+    height: 50px;
+}
+.container{
+    max-width: 80%;
+    margin: 0 auto;
+    height: 100%;
+}
+.container2{
+    max-width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    text-align: center;
+}
+.login_box span{
+    float: left;
+}
+.login_box .input {
+    width: 100%;
+    height: 30px;
+    border: none;
+    outline: none;
+    background: none;
+    border-bottom: 1px solid;
+}
+.check{
+    width: 20px;
+    height: 15px;
+    float: left;
+}
+.login_box button{
+    float: right;
+    height: 30px;
+    width: 80px;
+    border-radius: 30px;
+    cursor: pointer;
+    border: none;
+    background: -webkit-linear-gradient(left, red, blue);
+    color: white;
+}
+.login_box button:hover{
+    background: -webkit-linear-gradient(right, red, blue);
+}
+.img1{
+    float: left;
+    transition: all 0.5s;
+    border: 5px solid transparent;
+}
+.img2{
+    float: right;
+    transition: all 0.5s;
+    border: 5px solid transparent;
+}
+.img3{
+    transition: all 0.5s;
+    border: 5px solid transparent;
+}
+.login_decorar{
+    width: 100%;
+    min-height: 100%;
+    background-image: url(../assets/img-login/granja.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+.img1:hover{
+    border: 5px solid #ff0000;
+    border-radius: 50%;
+}
+.img2:hover{
+    border: 5px solid #ff0000;
+    border-radius: 50%;
+}
+.img3:hover{
+    border: 5px solid #ff0000;
+    border-radius: 50%;
+}
+.box-login{
+    display: inline-block;
+    background-color: white;
+    box-shadow: 3px 3px 5px 2px #ccc;
+    border-radius: 20px;
+    width: 600px;
+    height: 600px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

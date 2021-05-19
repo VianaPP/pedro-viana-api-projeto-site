@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" id="link_css1">
+    <link rel="stylesheet" href="css/index.css" id="link_css2">
+    <link rel="shortcut icon" href="assets/img-login/hatch.png" type="image/x-icon">
+    <title>Home</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="cabecalho">
+        <div class="caixa">
+            <h1><span>5</span>Chickens</h1>
+            <nav>
+                <ul class="nav_header">
+                    <li><img id="img_li" src="assets/lua.png" onclick="modo_noturno()"></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="sobre.html">Sobre Nós</a></li>
+                    <li class="li_home"><a href="index.html">Home</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="fadeIn">
+
+
+        <!-- Img Slide -->
+
+        <div id="slide_imagens">
+
+            <img src="assets/galinha_caipira.jpg" alt="" class="selected">
+            <img src="assets/galinha_bramah.jpeg" alt="">
+            <img src="https://i.pinimg.com/originals/7a/ca/79/7aca79a5d4ee0e0ac23713d33ebae4ac.jpg" alt="">
+            <img src="https://image.freepik.com/fotos-gratis/frango-de-yokohama-em-estudio_87557-1033.jpg" alt="">
+            <img src="https://maioresdomundo.com.br/wp-content/uploads/2019/08/galinha-andaluzes.jpg" alt="">
+            <img src="https://i.pinimg.com/originals/83/a6/2b/83a62b91eed91c4d2b946be1a3348510.jpg" alt="">
+            <img src="https://cdn.pixabay.com/photo/2019/04/02/15/06/araucana-4097912_640.jpg" alt="">
+            <img src="https://image.freepik.com/fotos-gratis/frango-serama-malaio_87557-17821.jpg" alt="">
+            <img src="assets/galinha_orpington.jpg" alt="">
+            <img src="https://conteudo.imguol.com.br/c/noticias/2014/04/08/raca-de-galinha-ornamental-polonesa-camurca-1396986225530_1920x1277.jpg"
+                alt="">
+            <img src="https://s3.amazonaws.com/newhobbyfarms.com/wp-content/uploads/2011/02/08212753/wyandotte-chicken-hen-Kelly-Weatherly-Flickr.jpg"
+                alt="">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/50/Gall-dindi.jpg" alt="">
+            <img src="https://cptstatic.s3.amazonaws.com/imagens/enviadas/materias/materia25932/pavao-afe.jpg" alt="">
+            <img src="https://lh6.ggpht.com/HoKWfp7ReT6F_YYz0xzExJ84p0DToCUBiHn8v_SBLicWZk3hdEGef3wvO88mDRhDkV4de5WCv-SvJZ0QOFmC=s580"
+                alt="">
+
+        </div>
+
+
+        <!-- Abaixo do slide -->
+        <div class="pontos_fortes">
+            <div class="caixa">
+                <span>Temperatura correta para cada fase do Frango</span> <br><br>
+                <span class="subtitulo">Oferecendo assim uma Melhor Qualidade de Vida para seus Animais </span>
+            </div>
+        </div>
+
+        <!-- explicação do projeto -->
+        <div class="sensor_de_temperatura">
+            <div class="caixa">
+
+                <div class="texto_sensor">
+                    <span class="explicacao_sensor"> Com um sensor de temperatura instalando na sua granja,<br>
+                        garantimos
+                        um animal mais saudavel em cada uma de suas fases. <br> Desde pintinhos até frangos adultos.
+                        <br><br><br>
+                        Você terá acesso a temperatura da sua granja 24h,<br> e poderá monitora-la, através do
+                        nossos
+                        software feito especialmente para sua granja. </span>
+                </div>
+
+                <img src="https://central3.to.gov.br/arquivo/417147.jpg" alt="">
+
+            </div>
+        </div>
+
+        <div class="titulo_fase"><br>
+            <span>Fases e suas respectivas temperaturas</span>
+        </div>
+
+        <div class="fases_galinha">
+            <div class="blue">
+                <img src="assets/pontas-de-flechas-direitas.png" onclick="div_fase()">
+            </div>
+            <div class="red"></div>
+
+            <div class="caixa_imagens">
+                <div class="img_galinha_1" id="img_galinha_1">
+                    <img class="img_tamanho" src="assets/Fase-adulta.png" alt="">
+                    <b>Adulto</b><br><br>
+                    <span>Não pode permanecer em um espaço com elevadas temperaturas. Logo, o ideal é um ambiente
+                        entre 21ºC e 23ºC </span>
+                </div><br>
+                <div class="img_galinha_2" id="img_galinha_2">
+                    <img class="img_tamanho" src="assets/Fase-jovem.png" alt=""><br>
+                    <b>Jovem</b><br><br>
+                    <span>Entre 22ºC e 24ºC de temperatura, um frango Jovem precisa. </span>
+                </div><br>
+                <div class="img_galinha_3" id="img_galinha_3">
+                    <img class="img_tamanho" src="assets/Fase-filhote.png" alt=""><br>
+                    <b>Filhote</b><br><br>
+                    <span>Nos primeiros dois dias, os filhotes necessitam de uma temperatura entre 32ºC a 31ºC </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="venha_fazer_parte">
+            <span>Venha fazer parte do 5chickens, e Melhore a Qualidade <br>e o bem estar dos seus Animais.</span>
+        </div>
+
+        <div class="barra_imagem">
+            <img src="assets/img-login/hatch.png" alt="">
+            <span>O melhor para suas aves</span>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="footer">
+        <div class="caixa_footer">
+            <nav>
+                <ul class="bot_list">
+                    <li>Telefone: 9999-9999</li>
+                    <li>Email contato@5chickens.com.br</li>
+                    <li>Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</li>
+                </ul>
+            </nav>
+            <small>&copy; Copyright 2021, 5Chickens</small>
+        </div>
+    </div>
+
+    <script src="JS/index.js"></script>
+</body>
+
+</html>
+
+<script>
+
+
+    var contador = 0;
+
+    function div_fase() {
+        contador++;
+
+        if (contador == 1) {
+
+            img_galinha_1.style.display = "none";
+            img_galinha_2.style.display = "block";
+            img_galinha_3.style.display = "none";
+
+        } else if (contador == 2) {
+
+            img_galinha_1.style.display = "none";
+            img_galinha_2.style.display = "none";
+            img_galinha_3.style.display = "block";
+
+        } else {
+
+            contador = 0;
+            img_galinha_1.style.display = "block";
+            img_galinha_2.style.display = "none";
+            img_galinha_3.style.display = "none";
+
+        }
+
+    }
+
+    var click = 0;
+
+    function modo_noturno() {
+
+        click++;
+
+        link_css1.href = "css/noturno/style2.css";
+        link_css2.href = "css/noturno/index2.css";
+
+        img_li.src = "assets/lua2.png"
+
+        if (click == 2) {
+            click = 0;
+            modo_normal()
+        }         
+
+    }
+
+
+    function modo_normal() {
+        link_css1.href = "css/style.css";
+        link_css2.href = "css/index.css";
+
+        img_li.src = "assets/lua.png"
+    }
+
+</script>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" id="link_css1">
+    <link rel="stylesheet" href="css/cliente.css" id="link_css2">
+    <link rel="shortcut icon" href="assets/img-login/hatch.png" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js"
+        integrity="sha512-dnUg2JxjlVoXHVdSMWDYm2Y5xcIrJg1N+juOuRi0yLVkku/g26rwHwysJDAMwahaDfRpr1AxFz43ktuMPr/l1A=="
+        crossorigin="anonymous">
+        </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="http://www.chartjs.org/dist/2.7.1/Chart.js"></script>
+    <script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+
+    <title>Clientes</title>
+
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="cabecalho">
+        <div class="caixa">
+            <h1><span>5</span>Chickens</h1>
+            <nav>
+                <ul class="nav_header">
+                    <li><img id="img_li" src="assets/lua.png" onclick="modo_noturno()"></li>
+                    <li><a href="#" onclick="logoff()">Sair</a></li>
+                    <li><a href="cadastro.html">Cadastrar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- final do header-->
+    <div class="fundo">
+        <div class="escurecer">
+            <div class="box_conteudo">
+                <div class="topicos">
+                    <nav>
+                        <ul class="nav_top">
+                            <li><button onclick="btn()">Pintainhos</button></li>
+                            <li><button onclick="btn_dois()">Frangos Jovens</button></li>
+                            <li><button onclick="btn_tres()">Frangos Adultos</button></li>
+                        </ul>
+                    </nav>
+
+                </div>
+                <div class="container">
+                    <div id="grafico_um" style="display: block;">
+                        <section>
+                            <canvas id="chart"></canvas>
+                            <section>
+                    </div>
+
+                    <div id="grafico_dois" style="display: none;">
+                        <canvas id="chart_two">
+                        </canvas>
+                    </div>
+
+                    <div id="grafico_tres" style="display: none;">
+                        <canvas id="chart_tres">
+
+                        </canvas>
+                    </div>
+                    <div class="informacao">
+                        <div class="container">
+                            <h2>Temperatura média:
+                                <br><label id='average'>0.00</label>
+                            </h2>
+                            <img src="assets/ferramenta-de-controle-de-temperatura-de-febre-medica-termometro.png"
+                                alt="">
+                            <h2>Temperatura Geral</h2>
+                            <div class="donut">
+                                <canvas id="my_chart_two"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="box1">
+                <div class="info_cliente">
+                    <img id="cliente" src="assets/foto_perfil.jpg" alt="foto cliente"><br><br>
+                    <span class="info_cliente">Bem Vindo <b id="b_usuario"></b> !</span>
+                    <br><br>
+                    <span class="info_cliente">Empresa Y</span>
+                    <nav class="menu">
+                        <ul>
+                            <li><img class="seta" src="assets/sinal-de-seta-para-baixo-para-navegar.png" alt="">
+                                <ul class="ani_menu">
+                                    <li><a href="#">Granja 1</a></li>
+                                    <li><a href="#">Granja 2</a></li>
+                                    <li><a href="#">Granja 3</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="caixa_footer">
+            <nav>
+                <ul class="bot_list">
+                    <li>Telefone: 9999-9999</li>
+                    <li>Email contato@5chickens.com.br</li>
+                    <li>Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</li>
+                </ul>
+            </nav>
+            <small>&copy; Copyright 2021, 5Chickens</small>
+        </div>
+    </footer>
+    <script>
+        var context = document.getElementById("chart").getContext("2d");
+        context.canvas.width = 1000;
+        context.canvas.height = 500;
+
+        var configuration = {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: "Temperature x Time",
+                    type: 'line',
+                    borderColor: ['#ff3232'],
+                    backgroundColor: ['#ff7f7f']
+                }]
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        //type: 'value',
+                        distribution: 'series',
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }],
+                    yAxes: [{
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Temperature'
+                        },
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                animation: {
+                    duration: 0
+                },
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Frangos Adultos'
+                    }
+                }
+            }
+        };
+
+        var chart = new Chart(context, configuration);
+
+        this.lastIndexTemp = 0;
+        this.time = 0;
+
+        function get_data() {
+
+            var http = new XMLHttpRequest();
+            http.open('GET', 'http://localhost:3000/api', false);
+            http.send(null);
+
+            var obj = JSON.parse(http.responseText);
+            if (obj.data.length == 0) {
+                return;
+            }
+
+            var _lastIndexTemp = this.lastIndexTemp;
+            this.lastIndexTemp = obj.data.length;
+            listTemp = obj.data.slice(_lastIndexTemp);
+
+            listTemp.forEach(data => {
+                //Máximo de 60 itens exibidos no gráfico
+                if (chart.data.labels.length == 10 && chart.data.datasets[0].data.length == 10) {
+                    chart.data.labels.shift();
+                    chart.data.datasets[0].data.shift();
+                }
+
+                chart.data.labels.push(this.time++);
+                chart.data.datasets[0].data.push(parseFloat(data));
+                chart.update();
+            });
+
+            document.getElementById('average').textContent = obj.average;
+        }
+        get_data();
+
+        setInterval(() => {
+            get_data();
+        }, 1000);
+    </script>
+</body>
+
+</html>
+<script>
+
+    function verificar_autenticacao() {
+        login_usuario = sessionStorage.login_cadastro_meuapp;
+        nome_usuario = sessionStorage.empresa_cadastro_meuapp;
+        
+        if (login_usuario == undefined)  {
+            redirecionar_login();
+        } else {
+            b_usuario.innerHTML = nome_usuario;
+            validar_sessao();
+        }
+        
+    }
+
+    verificar_autenticacao();
+
+    function redirecionar_login() {
+        window.location.href = 'login.html';
+    }
+
+    function btn() {
+        grafico_um.style.display = 'block';
+        grafico_dois.style.display = 'none';
+        grafico_tres.style.display = 'none';
+        grafico_quatro.style.display = 'none';
+
+    }
+    function btn_dois() {
+        grafico_um.style.display = 'none';
+        grafico_dois.style.display = 'block';
+        grafico_tres.style.display = 'none';
+        grafico_quatro.style.display = 'none';
+
+    }
+    function btn_tres() {
+        grafico_um.style.display = 'none';
+        grafico_dois.style.display = 'none';
+        grafico_tres.style.display = 'block';
+        grafico_quatro.style.display = 'none';
+    }
+    var ctx2 = chart_two.getContext('2d');
+
+    var myChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [30, 15, 17, 20, 13, 27],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Frangos Jovens'
+                }
+            }
+        },
+
+    });
+    var ctx3 = chart_tres.getContext('2d');
+
+    var myChart = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: ['1', '2', '3', '4', '5', '6'],
+            datasets: [{
+                label: 'Temperatura',
+                data: [30, 15, 17, 20, 13, 27],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Frangos Adultos'
+                }
+            }
+        },
+
+    });
+
+    var ctx4 = my_chart_two.getContext('2d');
+    ctx4.canvas.width = 70;
+    ctx4.canvas.height = 70;
+
+    var myChart = new Chart(ctx4, {
+        type: 'doughnut',
+        data: {
+            cutoutPercentage: 50,
+            labels: ['pintainhos', 'jovens', 'adultos'],
+            datasets: [
+                {
+                    label: 'temperatura',
+                    data: [30, 19, 20],
+                    backgroundColor: [
+                        'rgba(255, 0, 0)', 'rgba( 0, 255, 0)', 'rgba( 0, 0, 255)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 0
+                }]
+        }, options: {
+
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            }
+        },
+    });
+
+    var click = 0;
+
+    function modo_noturno() {
+
+        click++;
+
+        link_css1.href = "css/noturno/style2.css";
+        link_css2.href = "css/noturno/cliente2.css";
+
+        img_li.src = "assets/lua2.png"
+
+        if (click == 2) {
+            click = 0;
+            modo_normal()
+        }
+
+    }
+
+
+    function modo_normal() {
+        link_css1.href = "css/style.css";
+        link_css2.href = "css/cliente.css";
+
+        img_li.src = "assets/lua.png"
+    }
+</script>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" id="link_css1">
+    <link rel="stylesheet" href="css/loginpagina.css" id="link_css2">
+    <link rel="shortcut icon" href="assets/img-login/hatch.png" type="image/x-icon">
+    <title>Login</title>
+</head>
+
+<body>
+    <!-- header -->
+    <header>
+        <div class="cabecalho">
+            <div class="caixa">
+                <h1><span>5</span>Chickens</h1>
+                <nav>
+                    <ul class="nav_header">
+                        <li><img id="img_li" src="assets/lua.png" onclick="modo_noturno()"></li>
+                        <li><a id="a_login" href="login.html">Login</a></li>
+                        <li><a href="sobre.html">Sobre Nós</a></li>
+                        <li class="li_home"><a href="index.html">Home</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- login -->
+    <div class="fadeIn login_decorar">
+        <div class="escurecer">
+            <br>
+            <div class="container">
+                <div class="box-login">
+                    <div class="login_box"><br>
+                        <div class="container">
+                            <div class="container2">
+                                <img class="ovo" src="assets/img-login/hatch.png" alt="">
+                            </div>
+                            <h2>Fazer Login</h2>
+                            <br>
+                            <form id="form_login" method="post" onsubmit="return entrar()">
+                                <input class="input" id="ipt_email" name="login" type="email"
+                                    placeholder="Insira seu E-mail">
+                                <br><br>
+                                <input class="input" id="ipt_senha" name="senha" type="password"
+                                    placeholder="Insira sua Senha">
+                                <br><br>
+                                <button type="submit">Entrar</button>
+                            </form>
+                            <input class="check" type="checkbox"><span>Manter Login</span>
+                            <br><br><br><br>
+                            <h3>Ainda não é cliente?<br>Fale conosco!</h3>
+                            <br><br>
+                            <img class="img1" src="assets/img-login/facebook.png" alt="">
+                            <img src="assets/img-login/linkedin.png" alt="" class="img2">
+                            <img class="img3" src="assets/img-login/telegram.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <footer class="footer">
+        <div class="caixa_footer">
+            <nav>
+                <ul class="bot_list">
+                    <li>Telefone: 9999-9999</li>
+                    <li>Email contato@5chickens.com.br</li>
+                    <li>Rua Haddock Lobo, 595 - Cerqueira César, São Paulo - SP, 01414-001</li>
+                </ul>
+            </nav>
+            <small>&copy; Copyright 2021, 5Chickens</small>
+        </div>
+    </footer>
+</body>
+
+</html>
+<script>
+
+    function entrar() {
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_cadastro_meuapp = json.email;
+                    sessionStorage.empresa_cadastro_meuapp = json.empresa;
+
+                    window.location.href = 'cliente.html';
+                });
+
+            } else {
+
+                alert('Usuario Não Registrado.');
+                ipt_email.value = '';
+                ipt_senha.value = '';
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        });
+
+        return false;
+    }
+
+    var click = 0;
+
+    function modo_noturno() {
+
+        click++;
+
+        link_css1.href = "css/noturno/style2.css";
+        link_css2.href = "css/noturno/loginpagina2.css";
+
+        img_li.src = "assets/lua2.png"
+
+        if (click == 2) {
+            click = 0;
+            modo_normal()
+        }
+
+    }
+
+    function modo_normal() {
+        link_css1.href = "css/style.css";
+        link_css2.href = "css/loginpagina.css";
+
+        img_li.src = "assets/lua.png"
+    }
+</script>
